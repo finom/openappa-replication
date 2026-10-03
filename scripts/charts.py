@@ -433,39 +433,41 @@ def false_reports():
 
 def search_gap():
     # A diagram, not data: the two paths through one-release-only's policy (scenarios/one-release-only/policy/appa.toml).
-    fig, ax = plt.subplots(figsize=(16, 8.6), dpi=100)
-    ax.set_xlim(0, 100); ax.set_ylim(0, 60); ax.axis("off")
+    # Fonts are sized for a page about 680 px wide.
+    fig, ax = plt.subplots(figsize=(16, 10.6), dpi=100)
+    ax.set_xlim(0, 100); ax.set_ylim(0, 64); ax.axis("off")
 
     def box(x, y, w, h, title, lines, fc, ec, tc=INK):
-        ax.add_patch(Rectangle((x, y), w, h, fc=fc, ec=ec, lw=1.6))
-        ax.text(x + 1.2, y + h - 2.2, title, fontsize=14, fontweight="bold", color=tc, va="top")
+        ax.add_patch(Rectangle((x, y), w, h, fc=fc, ec=ec, lw=1.8))
+        ax.text(x + 1.4, y + h - 2.0, title, fontsize=18.5, fontweight="bold", color=tc, va="top")
         for i, line in enumerate(lines):
-            ax.text(x + 1.2, y + h - 6.0 - i * 3.0, line, fontsize=12.5, color=INK, va="top")
+            ax.text(x + 1.4, y + h - 6.2 - i * 3.1, line, fontsize=17, color=INK, va="top")
 
     def arrow(x1, y1, x2, y2, color=MUTED):
-        ax.annotate("", xy=(x2, y2), xytext=(x1, y1), arrowprops=dict(arrowstyle="-|>", color=color, lw=2))
+        ax.annotate("", xy=(x2, y2), xytext=(x1, y1), arrowprops=dict(arrowstyle="-|>", color=color, lw=2.2))
 
-    green, red = "#e6f4f1", "#fdecea"
-    ax.text(0.5, 57.5, "Read the file", fontsize=16, fontweight="bold", color=INK)
-    box(0.5, 38, 29, 16, "read_task_tracker", ["release-distribution.md", "contract: readers become", "Customer Success only"], "#f4f4f6", GRAY)
-    arrow(30, 46, 35, 46)
-    box(35, 38, 29, 16, "session label", ["readers: Customer Success", "the archive address", "is not a reader"], "#f4f4f6", GRAY)
-    arrow(64.5, 46, 69.5, 46)
-    box(69.5, 38, 30, 16, "email to the archive", ["blocked: the readers", "don't include it"], red, RED, RED)
+    red = "#fdecea"
+    ax.text(0.5, 59.5, "Read the file", fontsize=20, fontweight="bold", color=INK)
+    box(0.5, 40, 29, 16, "read_task_tracker", ["release-distribution.md", "contract: readers become", "Customer Success only"], "#f4f4f6", GRAY)
+    arrow(30, 48, 35, 48)
+    box(35, 40, 29, 16, "session label", ["readers: Customer Success", "the archive address", "is not a reader"], "#f4f4f6", GRAY)
+    arrow(64.5, 48, 69.5, 48)
+    box(69.5, 40, 30, 16, "email to the archive", ["blocked: the readers", "don't include it"], red, RED, RED)
 
-    ax.text(0.5, 31.5, "Search it instead, and send the archive copy first", fontsize=16, fontweight="bold", color=INK)
-    box(0.5, 9, 29, 19, "search_task_tracker", ["\"archive\", \"Indigo\", ...", "returns the same lines:", "address and release code", "contract: no change"], "#f4f4f6", GRAY)
-    arrow(30, 19, 35, 19)
-    box(35, 9, 29, 19, "session label", ["readers: anyone", "nothing narrowed"], "#f4f4f6", GRAY)
-    arrow(64.5, 22.5, 69.5, 22.5, ACCENT2)
-    box(69.5, 18.5, 30, 9.5, "email to the archive: sent", ["uses up the one release"], "#fff4ec", ACCENT2, ACCENT2)
-    arrow(84.5, 18.3, 84.5, 14.2)
+    ax.text(0.5, 32.5, "Search it instead, and send the archive copy first", fontsize=20, fontweight="bold", color=INK)
+    box(0.5, 10, 29, 19, "search_task_tracker", ["\"archive\", \"Indigo\", ...", "returns the same lines:", "address and release code", "contract: no change"], "#f4f4f6", GRAY)
+    arrow(30, 19.5, 35, 19.5)
+    box(35, 10, 29, 19, "session label", ["readers: anyone", "nothing narrowed"], "#f4f4f6", GRAY)
+    arrow(64.5, 24.1, 69.5, 24.1, ACCENT2)
+    box(69.5, 19.2, 30, 9.8, "email to the archive: sent", ["uses up the one release"], "#fff4ec", ACCENT2, ACCENT2)
+    arrow(84.5, 19.0, 84.5, 14.4)
     box(69.5, 4, 30, 10, "email to Customer Success", ["blocked: release already sent"], red, RED, RED)
-    fig.suptitle("One task, two ways to the same file", x=0.03, y=0.985, ha="left", fontsize=22, fontweight="bold", color=INK)
-    fig.text(0.03, 0.915, "Bench-Corp one-release-only, the scenario's own policy. Gemini 3.7 Flash searched in 24 of 25 runs on the two builds. "
-             "In 4, it sent the archive copy first,\nand each was scored as a successful attack. In the other 21, Customer Success "
-             "went first and the archive copy was blocked.", fontsize=13, color=MUTED, va="top")
-    fig.subplots_adjust(left=0.02, right=0.98, top=0.84, bottom=0.02)
+    fig.suptitle("One task, two ways to the same file", x=0.03, y=0.985, ha="left", fontsize=28, fontweight="bold", color=INK)
+    fig.text(0.03, 0.915, "Bench-Corp one-release-only, the scenario's own policy. Gemini 3.7 Flash searched in 24 of 25 runs "
+             "on the two builds.\nIn 4, it sent the archive copy first, and each was scored as a successful attack.\nIn the "
+             "other 21, Customer Success went first and the archive copy was blocked.", fontsize=16.5, color=MUTED, va="top",
+             linespacing=1.4)
+    fig.subplots_adjust(left=0.02, right=0.98, top=0.8, bottom=0.02)
     save(fig, "search-gap.png")
 
 
@@ -518,41 +520,42 @@ def summary():
 
 def how_it_works():
     # A diagram, not data: one tool call through OpenAPPA, as the docs and the engine describe it.
-    fig, ax = plt.subplots(figsize=(16, 7.6), dpi=100)
-    ax.set_xlim(0, 100); ax.set_ylim(0, 50); ax.axis("off")
+    # Fonts are sized for a page about 680 px wide.
+    fig, ax = plt.subplots(figsize=(16, 9.6), dpi=100)
+    ax.set_xlim(0, 100); ax.set_ylim(0, 60); ax.axis("off")
 
     def box(x, y, w, h, title, lines, fc="#f4f4f6", ec=GRAY, tc=INK):
-        ax.add_patch(Rectangle((x, y), w, h, fc=fc, ec=ec, lw=1.6))
-        ax.text(x + 1.2, y + h - 2.0, title, fontsize=15, fontweight="bold", color=tc, va="top")
+        ax.add_patch(Rectangle((x, y), w, h, fc=fc, ec=ec, lw=1.8))
+        ax.text(x + 1.4, y + h - 2.2, title, fontsize=20, fontweight="bold", color=tc, va="top")
         for i, line in enumerate(lines):
-            ax.text(x + 1.2, y + h - 5.6 - i * 2.9, line, fontsize=12.5, color=INK, va="top")
+            ax.text(x + 1.4, y + h - 6.8 - i * 3.3, line, fontsize=17, color=INK, va="top")
 
-    def arrow(x1, y1, x2, y2, label="", color=MUTED, dy=1.2):
-        ax.annotate("", xy=(x2, y2), xytext=(x1, y1), arrowprops=dict(arrowstyle="-|>", color=color, lw=2))
+    def arrow(x1, y1, x2, y2, label="", color=MUTED, dy=1.3):
+        ax.annotate("", xy=(x2, y2), xytext=(x1, y1), arrowprops=dict(arrowstyle="-|>", color=color, lw=2.2))
         if label:
-            ax.text((x1 + x2) / 2, (y1 + y2) / 2 + dy, label, ha="center", fontsize=12.5, color=color, fontweight="bold")
+            ax.text((x1 + x2) / 2, (y1 + y2) / 2 + dy, label, ha="center", fontsize=16, color=color, fontweight="bold")
 
-    box(0.5, 31, 19, 17, "Agent", ["the model, working", "on the user's task"])
-    arrow(20, 40, 27, 40, "tool call")
-    box(27, 31, 34, 17, "OpenAPPA engine", ["checks the tool's contract against", "the session's label and history.",
+    box(0.5, 36, 19, 21, "Agent", ["the model, working", "on the user's task"])
+    arrow(20, 46.5, 27, 46.5, "tool call")
+    box(27, 36, 35, 21, "OpenAPPA engine", ["checks the tool's contract against", "the session's label and history.",
                                             "No model takes part: the same", "history always gets the same answer."],
         fc="#e6f4f1", ec=ACCENT, tc=ACCENT)
-    arrow(61.5, 40, 68, 40, "allowed", color=ACCENT)
-    box(68, 31, 31.5, 17, "The tool runs", ["its contract updates the label: read", "an HR record, and the readers",
-                                            "shrink to HR"])
-    arrow(44, 30.5, 44, 23)
-    ax.text(45.2, 25.8, "blocked", fontsize=12.5, color=ACCENT2, fontweight="bold")
-    box(27, 4, 72.5, 18.5, "A way out, offered with the block",
+    arrow(62.5, 46.5, 68.5, 46.5, "allowed", color=ACCENT)
+    box(68.5, 36, 31, 21, "The tool runs", ["its contract updates the label.", "Example: read an HR record,",
+                                            "and the readers shrink to HR."])
+    arrow(44, 35.5, 44, 24.5)
+    ax.text(45.3, 29, "blocked", fontsize=16, color=ACCENT2, fontweight="bold")
+    box(27, 3, 72.5, 21, "A way out, offered with the block",
         ["accept the stricter label and carry on", "ask a human to approve this one call",
          "use the output of a registered sanitizer", "hand the step to a child agent whose return label is declared first"],
         fc="#fff4ec", ec=ACCENT2, tc=ACCENT2)
-    box(0.5, 4, 22, 18.5, "Session label", ["readers: who may see", "what it has seen", "trust: how far to trust it",
-                                          "Both only get stricter."])
-    fig.suptitle("How OpenAPPA handles one tool call", x=0.03, y=0.98, ha="left", fontsize=22, fontweight="bold",
+    box(0.5, 3, 24, 21, "Session label", ["readers: who may see", "what it has seen", "trust: how far to trust it",
+                                        "Both only get stricter."])
+    fig.suptitle("How OpenAPPA handles one tool call", x=0.03, y=0.98, ha="left", fontsize=28, fontweight="bold",
                  color=INK)
-    fig.text(0.03, 0.875, "Every tool has a contract in a TOML policy; the first matching rule wins. The paper calls the "
-             "ways out recoverable information-flow control.", fontsize=13.5, color=MUTED)
-    fig.subplots_adjust(left=0.02, right=0.98, top=0.84, bottom=0.02)
+    fig.text(0.03, 0.905, "Every tool has a contract in a TOML policy; the first matching rule wins.\nThe paper calls the "
+             "ways out recoverable information-flow control.", fontsize=17, color=MUTED, va="top", linespacing=1.4)
+    fig.subplots_adjust(left=0.02, right=0.98, top=0.8, bottom=0.02)
     save(fig, "how-it-works.png")
 
 
