@@ -1,0 +1,123 @@
+{
+ "idle": {
+  "what": "53c3d8e, idle machine",
+  "calls": 4000,
+  "windows": {
+   "1-10": {
+    "tool_call_ms": 10.412250005174428,
+    "pre_hook_ms": 5.262396007310599,
+    "policy_check_ms": 0.40049999999999997
+   },
+   "91-110": {
+    "tool_call_ms": 13.795186998322606,
+    "pre_hook_ms": 6.993416493060067,
+    "policy_check_ms": 2.3135
+   },
+   "491-510": {
+    "tool_call_ms": 63.97085401113145,
+    "pre_hook_ms": 33.20016697398387,
+    "policy_check_ms": 25.044
+   },
+   "991-1010": {
+    "tool_call_ms": 196.60847945488058,
+    "pre_hook_ms": 99.97066648793407,
+    "policy_check_ms": 87.8415
+   },
+   "1491-1510": {
+    "tool_call_ms": 403.6712500092108,
+    "pre_hook_ms": 202.6262495201081,
+    "policy_check_ms": 186.5695
+   },
+   "1991-2010": {
+    "tool_call_ms": 671.8368330039084,
+    "pre_hook_ms": 337.6086460193619,
+    "policy_check_ms": 318.172
+   },
+   "2991-3010": {
+    "tool_call_ms": 1429.590562969679,
+    "pre_hook_ms": 708.1531870062463,
+    "policy_check_ms": 682.7065
+   },
+   "3981-4000": {
+    "tool_call_ms": 2472.9756044980604,
+    "pre_hook_ms": 1223.1732914806344,
+    "policy_check_ms": 1190.1084999999998
+   }
+  },
+  "total_wait_min": 57.650048389454604
+ },
+ "load": {
+  "what": "53c3d8e, under benchmark load",
+  "calls": 4000,
+  "windows": {
+   "1-10": {
+    "tool_call_ms": 22.863458027131855,
+    "pre_hook_ms": 11.368937499355525,
+    "policy_check_ms": 0.6765
+   },
+   "91-110": {
+    "tool_call_ms": 21.54308301396668,
+    "pre_hook_ms": 11.072374996729195,
+    "policy_check_ms": 3.136
+   },
+   "491-510": {
+    "tool_call_ms": 81.01718846592121,
+    "pre_hook_ms": 41.41025000717491,
+    "policy_check_ms": 30.024
+   },
+   "991-1010": {
+    "tool_call_ms": 220.99343698937446,
+    "pre_hook_ms": 112.41960446932353,
+    "policy_check_ms": 96.9405
+   },
+   "1491-1510": {
+    "tool_call_ms": 436.5238329919521,
+    "pre_hook_ms": 220.65760451368988,
+    "policy_check_ms": 201.12400000000002
+   },
+   "1991-2010": {
+    "tool_call_ms": 725.8000835427083,
+    "pre_hook_ms": 363.8999795075506,
+    "policy_check_ms": 340.4625
+   },
+   "2991-3010": {
+    "tool_call_ms": 1546.7116034997161,
+    "pre_hook_ms": 769.4190619804431,
+    "policy_check_ms": 737.252
+   },
+   "3981-4000": {
+    "tool_call_ms": 2658.296082983725,
+    "pre_hook_ms": 1309.0392499580048,
+    "policy_check_ms": 1267.065
+   }
+  },
+  "total_wait_min": 63.11387706094926
+ },
+ "main": {
+  "what": "5060566 (main on 2026-10-02), idle machine",
+  "calls": 1000,
+  "windows": {
+   "1-10": {
+    "tool_call_ms": 10.754729009931907,
+    "pre_hook_ms": 5.209458468016237,
+    "policy_check_ms": 0.369
+   },
+   "91-110": {
+    "tool_call_ms": 15.133979060919955,
+    "pre_hook_ms": 8.177520532626659,
+    "policy_check_ms": 2.5185000000000004
+   },
+   "491-510": {
+    "tool_call_ms": 65.0627709692344,
+    "pre_hook_ms": 33.90983346616849,
+    "policy_check_ms": 25.714
+   },
+   "991-1010": {
+    "tool_call_ms": 200.58466598857194,
+    "pre_hook_ms": 103.8547079951968,
+    "policy_check_ms": 91.299
+   }
+  },
+  "total_wait_min": 1.3190846563016143
+ }
+}

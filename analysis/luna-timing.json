@@ -1,0 +1,18 @@
+{
+ "appa": {
+  "runs": 20,
+  "mean_s": 34.8165,
+  "median_s": 34.65,
+  "mean_upstream_s": 38.095,
+  "mean_wait_s": 11.1025,
+  "retries_429": 0
+ },
+ "appa-open": {
+  "runs": 20,
+  "mean_s": 7.7145,
+  "median_s": 6.875,
+  "mean_upstream_s": 11.6645,
+  "mean_wait_s": 3.7075,
+  "retries_429": 0
+ }
+}

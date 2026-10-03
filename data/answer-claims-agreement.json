@@ -1,0 +1,28 @@
+{
+ "method": "Two independent classifier passes per answer; the second pass saw no model, arm or run key, in shuffled order. Every answer either pass marked false_claim was read by hand against the run's sink and decision log.",
+ "main_runs_first_batches": {
+  "n": 699,
+  "both": 35,
+  "first_only": 0,
+  "second_only": 0,
+  "agreement": 1.0,
+  "kappa": 1.0
+ },
+ "main_runs_later_batches": {
+  "n": 261,
+  "both": 11,
+  "first_only": 0,
+  "second_only": 0,
+  "agreement": 1.0,
+  "kappa": 1.0
+ },
+ "prompt_sentence_test": {
+  "n": 90,
+  "both": 20,
+  "first_only": 0,
+  "second_only": 0,
+  "agreement": 1.0,
+  "kappa": 1.0,
+  "note": "both passes blind to model and version"
+ }
+}

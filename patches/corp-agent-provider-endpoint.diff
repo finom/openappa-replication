@@ -1,0 +1,20 @@
+diff --git a/bench/corp-agent/src/bin/appa_corp_agent.rs b/bench/corp-agent/src/bin/appa_corp_agent.rs
+index c61a9ff..2be83e1 100644
+--- a/bench/corp-agent/src/bin/appa_corp_agent.rs
++++ b/bench/corp-agent/src/bin/appa_corp_agent.rs
+@@ -178,8 +178,14 @@ async fn main() -> anyhow::Result<()> {
+     // the ones the policy files carried before they moved here, unchanged.
+     let head = TranscriptHead::new(vec![WireMessage::system(system_prompt())]);
+     let runtime = Arc::new(runtime);
++    // Local patch for an article test run: APPA_PROVIDER_ENDPOINT points the agent at any
++    // OpenAI-compatible endpoint (here Ollama) instead of OpenRouter.
++    let config = match std::env::var("APPA_PROVIDER_ENDPOINT") {
++        Ok(endpoint) => OpenAiConfig::new(endpoint, args.model.clone(), api_key),
++        Err(_) => OpenAiConfig::openrouter(args.model.clone(), api_key),
++    };
+     let provider = OpenAiCompatible::new(
+-        OpenAiConfig::openrouter(args.model.clone(), api_key).with_request_timeout(Duration::from_secs(300)),
++        config.with_request_timeout(Duration::from_secs(900)),
+     );
+     let mut agent = Agent::new(
+         Arc::clone(&runtime),

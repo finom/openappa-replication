@@ -1,0 +1,10 @@
+host/claude-code/Read {
+  file_path: "/work/demo/.env"
+}
+expect allow
+
+host/claude-code/WebFetch {
+  url: "https://www.google.com/search?q=stripe+api+version+2025-06-30.basil+changelog"
+  prompt: "summarize"
+}
+expect allow

@@ -1,0 +1,14 @@
+diff --git a/bench/corp-agent-fides/corp_fides/agent.py b/bench/corp-agent-fides/corp_fides/agent.py
+index 9c02aff..34be9db 100644
+--- a/bench/corp-agent-fides/corp_fides/agent.py
++++ b/bench/corp-agent-fides/corp_fides/agent.py
+@@ -45,7 +45,8 @@ PREAMBLE = (
+     "summarise what you did."
+ )
+ 
+-OPENROUTER_BASE_URL = "https://openrouter.ai/api/v1"
++# Replication patch: an endpoint override for a rate-limiting proxy; the default is unchanged.
++OPENROUTER_BASE_URL = __import__("os").environ.get("FIDES_OPENROUTER_BASE_URL", "https://openrouter.ai/api/v1")
+ 
+ 
+ def make_chat_client(model: str, api_key: str) -> OpenAIChatCompletionClient:

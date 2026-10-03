@@ -1,0 +1,40 @@
+diff --git a/bench/corp-agent/src/bin/appa_corp_agent.rs b/bench/corp-agent/src/bin/appa_corp_agent.rs
+index e66698f..f47352f 100644
+--- a/bench/corp-agent/src/bin/appa_corp_agent.rs
++++ b/bench/corp-agent/src/bin/appa_corp_agent.rs
+@@ -25,7 +25,8 @@ use std::time::Duration;
+ use anyhow::Context;
+ use appa_example_agent::wire::WireMessage;
+ use appa_example_agent::{
+-    Agent, ArgumentKey, Limits, OpenAiCompatible, Outcome, SpawnTool, ToolCatalogue, ToolName, ToolShim, TranscriptHead,
++    Agent, ArgumentKey, Limits, OpenAiCompatible, OpenAiConfig, Outcome, SpawnTool, ToolCatalogue, ToolName, ToolShim,
++    TranscriptHead,
+ };
+ use appa_runtime::api::{AuditEntry, AuditEvent, AuditLabel, DispatchOutcome, Runtime, TrajectoryId};
+ use appa_runtime::config::{Config, DynamicImplementation, Endpoint, Implementation};
+@@ -173,9 +174,15 @@ async fn main() -> anyhow::Result<()> {
+     // the ones the policy files carried before they moved here, unchanged.
+     let head = TranscriptHead::new(vec![WireMessage::system(system_prompt())]);
+     let runtime = Arc::new(runtime);
++    // Local patch for an article test run: the same endpoint switch and limits as the v0.30.0 run,
++    // so the two versions differ only in OpenAPPA itself.
++    let config = match std::env::var("APPA_PROVIDER_ENDPOINT") {
++        Ok(endpoint) => OpenAiConfig::new(endpoint, args.model.clone(), api_key),
++        Err(_) => OpenAiConfig::openrouter(args.model.clone(), api_key),
++    };
+     let mut agent = Agent::new(
+         Arc::clone(&runtime),
+-        OpenAiCompatible::openrouter(args.model.clone(), api_key),
++        OpenAiCompatible::new(config.with_request_timeout(Duration::from_secs(900))),
+         ToolShim::new(format!("{origin}{}", shim::TOOLS_PATH)),
+         ToolCatalogue::new(catalogue::advertised(&compiled, forking)),
+     )
+@@ -186,7 +193,7 @@ async fn main() -> anyhow::Result<()> {
+         // offer here names a call to propose again rather than running
+         // it, so every acceptance costs a second call.
+         max_tool_calls: 64,
+-        run_deadline: Duration::from_secs(240),
++        run_deadline: Duration::from_secs(900),
+         max_forks: args.max_forks,
+         max_fork_depth: args.max_fork_depth,
+     });
