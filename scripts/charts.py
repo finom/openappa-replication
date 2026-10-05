@@ -316,7 +316,7 @@ def overhead():
                  x=0.03, ha="left", fontsize=22, fontweight="bold", color=INK, y=0.985)
     paced = ("Luna's time is from runs made one at a time, without the rate limit; Gemini's is left out." if luna_time
              else "Luna's and Gemini's times are left out: a rate limit paced their requests.")
-    fig.text(0.03, 0.925, "The README's \"+4.22%\" compares with Tau's stock agent; against the same agent with an open "
+    fig.text(0.03, 0.925, "The evaluation page's \"+4.22%\" compares with Tau's stock agent; against the same agent with an open "
              f"policy it is +2.8%.\nOn Bench-Corp the policy acts in almost every run. {paced}", fontsize=13.5,
              color=MUTED, linespacing=1.4, va="top")
     fig.subplots_adjust(left=0.29, right=0.97, top=0.82, bottom=0.09)
@@ -487,10 +487,11 @@ def summary():
          f"guarded Bench-Corp runs, both through one\ngap in one task's policy. "
          f"AgentThreatBench:\n{sum(r['attacks'] for r in g_atb)} of {sum(r['n'] for r in g_atb)} attacks got through."),
         ("Tasks finished", "88–90%", f"{min(done) * 100:.0f}–{max(done):.0%}",
-         "on the October 1 code, normal prompt."
+         "runs where the checker found the job done,\non the October 1 code, normal prompt."
          + (f"\nThe August 26 build behind the README:\n{aug['done'] / aug['n']:.0%} (Luna)." if aug else "")),
-        ("Extra tokens", "+4.22%", f"{min(tokens):.1f}–{max(tokens):.0f}x", "on Bench-Corp, where the policy acts\n"
-         "in almost every run. The 4.22% comes from\na benchmark where it stopped 1 call in 11,355."),
+        ("Tokens, guard on vs off", "1.04x", f"{min(tokens):.1f}–{max(tokens):.0f}x",
+         "Published: Tau-bench, where the guard\nstopped 1 call in 11,355.\nMeasured: Bench-Corp, where it acts\n"
+         "in almost every run."),
         ("Blocked step reported as done", "not measured",
          f"{sum(c['false'] for c in claims)} of {sum(c['answers'] for c in claims)}",
          "guarded runs whose final answer said\na blocked email or share had gone out."),
@@ -501,10 +502,11 @@ def summary():
     fig, ax = plt.subplots(figsize=(16, 10), dpi=100)
     ax.set_xlim(0, 100); ax.set_ylim(0, 100); ax.axis("off")
     fig.suptitle("OpenAPPA's numbers, re-run", x=0.03, y=0.97, ha="left", fontsize=26, fontweight="bold", color=INK)
-    fig.text(0.03, 0.885, "What the README says, and what I measured. Bench-Corp unless noted; DeepSeek V4 Flash, GPT-5.6 "
-             "Luna, Gemini 3.7 Flash, Qwen 3.8 27B.", fontsize=14, color=MUTED)
-    top, step = 92, 18
-    ax.text(30, top + 2, "README", fontsize=14, color=MUTED, fontweight="bold")
+    fig.text(0.03, 0.905, "Published: OpenAPPA's README and evaluation page. Measured: my runs, on Bench-Corp unless noted,\n"
+             "with DeepSeek V4 Flash, GPT-5.6 Luna, Gemini 3.7 Flash and Qwen 3.8 27B.", fontsize=14, color=MUTED,
+             va="top", linespacing=1.4)
+    top, step = 92, 18.6
+    ax.text(30, top + 2, "Published", fontsize=14, color=MUTED, fontweight="bold")
     ax.text(50, top + 2, "Measured", fontsize=14, color=ACCENT2, fontweight="bold")
     for i, (label, readme, value, detail) in enumerate(rows):
         y = top - i * step
@@ -513,7 +515,7 @@ def summary():
         ax.text(30, y - 2.6, readme, fontsize=24 if readme[0].isdigit() or readme[0] in "+" else 15,
                 color=MUTED, va="top", fontweight="bold" if readme[0].isdigit() or readme[0] == "+" else "normal")
         ax.text(50, y - 2.6, value, fontsize=24, color=ACCENT2, va="top", fontweight="bold")
-        ax.text(68, y - 3.0, detail, fontsize=13, color=INK, va="top", linespacing=1.35)
+        ax.text(68, y - 3.0, detail, fontsize=14, color=INK, va="top", linespacing=1.35)
     fig.subplots_adjust(left=0.02, right=0.99, top=0.86, bottom=0.0)
     save(fig, "summary.png")
 
