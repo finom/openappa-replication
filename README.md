@@ -1,6 +1,6 @@
 # OpenAPPA, re-run: reproducibility package
 
-Data, scripts and patches behind the article "Zero percent of what?". Every number in the article comes from a file here.
+Data, scripts and patches behind the article "An AI agent guard claims zero successful attacks. I re-ran its tests." Every number in the article comes from a file here.
 
 ```sh
 python3 scripts/analyze.py                              # every table, from data/
