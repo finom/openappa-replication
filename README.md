@@ -43,7 +43,7 @@ uv run --with matplotlib python scripts/article_charts.py   # the article's simp
 - `data/diag-proxy-deepseek-*.jsonl`: per-request metadata of one DeepSeek run on the fastest provider and one on the default provider (time, provider, token counts; no content).
 - `data/decision-logs/`: the agent logs of the runs the article walks through (forum posts, false reports, the onboarding task, the archive email), made with `scripts/decision_log.py`: what the agent proposed, what OpenAPPA blocked and why, and what it released at which label, without tool arguments or message content. `sources.json` names each log's run, build and model.
 - `traces/t7.appa`, `traces/t8.appa`: the WebSearch / WebFetch policy cases, for `appa replay`.
-- `charts/`: every chart, from `scripts/charts.py`, with every model and run group. `charts/article/`: the eight the article shows, from `scripts/article_charts.py`: the same data, fewer rows, plain labels. `figures/`: the article's other images (the Claude Code diagram and screenshot, with a fake `.env`; the covers).
+- `charts/`: every chart, from `scripts/charts.py`, with every model and run group. `charts/article/`: the eight the article shows, from `scripts/article_charts.py`: the same data, fewer rows, plain labels. `figures/`: the article's other images (the Claude Code diagram and screenshot, with a fake `.env`; the covers, from `scripts/cover.py`).
 
 ## Deviations from the authors' setup, and why
 
